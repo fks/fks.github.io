@@ -44,6 +44,7 @@
     </tbody>
 
 </table>
+<p id="geomsg"></p>
 <button type="button" class="btn btn-dark btn-block">Bestellen</button>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -56,9 +57,11 @@
     
     function getLocation() {
         if (navigator.geolocation) {
+            $("#geomsg").text("Geo aktiv.");
             navigator.geolocation.getCurrentPosition(checkPosition);
         } else {
-            alert("Keine Geolocation möglich");
+            $("#geomsg").text("Keine Geolocation möglich");
+            //alert("Keine Geolocation möglich");
         }
     }
 
@@ -66,7 +69,8 @@
         var lat = position.coords.latitude
         var lng = position.coords.longitude;
         const d = calcDistance(myLat,myLong, lat, lng);
-        alert("lat: " + lat + ", long: " + lng + " distance " + d + "m");
+        //alert("lat: " + lat + ", long: " + lng + " distance " + d + "m");
+        $("#geomsg").text("lat: " + lat + ", long: " + lng + " distance " + d + "m");
     }
 
     function calcDistance(lat1, lon1, lat2, lon2) {
