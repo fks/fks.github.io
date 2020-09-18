@@ -58,7 +58,10 @@
     function getLocation() {
         if (navigator.geolocation) {
             $("#geomsg").text("Geo aktiv.");
-            navigator.geolocation.getCurrentPosition(locationFound, errorCallback,{timeout:3000});
+            //Dummy one, which will result in a working next statement.
+            navigator.geolocation.getCurrentPosition(function () {}, function () {}, {});
+            // echte abfrage
+            navigator.geolocation.getCurrentPosition(locationFound, errorCallback,{maximumAge:60000, timeout:4000, enableHighAccuracy:true});
         } else {
             $("#geomsg").text("Keine Geolocation möglich");
             //alert("Keine Geolocation möglich");
